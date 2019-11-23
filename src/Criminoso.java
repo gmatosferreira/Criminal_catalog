@@ -9,14 +9,14 @@ public class Criminoso {
 	private Set<Crime> crimes;
 	
 	//Construtor
-	public Pessoa(String nome, int cc, Data dataNasc, Set<Crime> crimes) {
+	public Criminoso(String nome, int cc, Data dataNasc, Set<Crime> crimes) {
 		this.nome=nome;
 		this.cc=cc;
 		this.dataNasc=dataNasc;
 		this.crimes=crimes;		
 	}
 	
-	public Pessoa(String nome, int cc, Data dataNasc) {
+	public Criminoso(String nome, int cc, Data dataNasc) {
 		this(nome,cc,dataNasc,new HashSet<Crime>());
 	}
 	
@@ -48,9 +48,9 @@ public class Criminoso {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		if (!(obj instanceof Pessoa))
+		if (!(obj instanceof Criminoso))
 			return false;
-		Pessoa other = (Pessoa) obj;
+		Criminoso other = (Criminoso) obj;
 		if (cc != other.cc)
 			return false;
 		if (dataNasc == null) {
@@ -64,6 +64,14 @@ public class Criminoso {
 		} else if (!nome.equalsIgnoreCase(other.nome))
 			return false;
 		return true;
+	}
+
+	public Set<Crime> getCrimes() {
+		return crimes;
+	}
+
+	public void setCrimes(Set<Crime> crimes) {
+		this.crimes = crimes;
 	}
 
 	
