@@ -22,3 +22,10 @@ Java collections P9 e P10
 Ficheiros P11
 
 Global P12
+
+###Livros
+http://opac.ua.pt/cgi-bin/koha/opac-detail.pl?biblionumber=238357
+
+##Dúvidas
+
+Como determinar o tamanho do array para o filtro de Bloom?
