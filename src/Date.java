@@ -1,21 +1,21 @@
 import java.util.Calendar;
 
-public class Data implements Comparable<Data>{
+public class Date implements Comparable<Date>{
 	private int dd;
 	private int mm;
 	private int aa;
 	
 	//Construtor
-	public Data(int dd, int mm, int aa) {
+	public Date(int dd, int mm, int aa) {
 		this.dd=dd;
 		this.mm=mm;
 		this.aa=aa;
 	}
 	
 	//Métodos estáticos
-	public static Data dataHoje() {
+	public static Date todayDate() {
 	    Calendar now = Calendar.getInstance();
-	    return new Data(now.get(Calendar.DATE), now.get(Calendar.MONTH)+1, now.get(Calendar.YEAR));
+	    return new Date(now.get(Calendar.DATE), now.get(Calendar.MONTH)+1, now.get(Calendar.YEAR));
 	}
 	
 	public String toString() {
@@ -34,7 +34,7 @@ public class Data implements Comparable<Data>{
 		return aa;
 	}
 	
-	public int compareTo(Data other) {
+	public int compareTo(Date other) {
 		//return 0 if equal, <1 if smaller and >1 of greater 
 		int c = aa-other.getA();
 		if(c!=0) return c;
@@ -56,9 +56,9 @@ public class Data implements Comparable<Data>{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		if (!(obj instanceof Data))
+		if (!(obj instanceof Date))
 			return false;
-		Data other = (Data) obj;
+		Date other = (Date) obj;
 		if (aa != other.aa)
 			return false;
 		if (dd != other.dd)

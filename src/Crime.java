@@ -1,37 +1,27 @@
 public class Crime {
-
-	private String nome;
-	private String tipo;
-	private int id;
-	private Data dataOcorr;
+	
+	private String name;
+	private String category;
+	private Date date;
 	
 	//Construtor
-	public Crime(String nome, String tipo, int id, Data dataOcorr) {
-		this.nome=nome;
-		this.tipo=tipo;
-		this.id=id;
-		this.dataOcorr=dataOcorr;
+	public Crime(String name, String category, Date dataOcorr) {
+		this.name=name;
+		this.category=category;
+		this.date=dataOcorr;
 	}
-	
 
 	//Métodos de seleção
-	public String getNome() {
-		return this.nome;
-	}
-	public String getTipo() {
-		return this.tipo;
-	}
-	public int getId() {
-		return this.id;
-	}
-	public Data getDataOcorr() {
-		return this.dataOcorr;
+	public String getName() {
+		return name;
 	}
 
-	public String toString() {
-		return nome + ", Tipo: " + tipo + ", Id: " + id + " Data Ocorr: " + dataOcorr;
+	public String getCategory() {
+		return category;
 	}
-
-
+	
+	public String getDate() {
+		return date.toString();
+	}	
 	
 }
