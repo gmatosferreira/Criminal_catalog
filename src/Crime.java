@@ -24,4 +24,9 @@ public class Crime {
 		return date.toString();
 	}	
 	
+	
+	// Override method toString()
+	public String toString() {
+		return "Crime named "+name + " categorized as " + category + " practiced on the " + date;
+	}	
 }
