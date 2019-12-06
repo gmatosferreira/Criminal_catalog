@@ -17,7 +17,7 @@ public class Criminal {
 		this.crimes=crimes;		
 	}
 	
-	public Criminal(String name, int id, Date dateOfBirth, Traits traits, Crime crimes) {
+	public Criminal(String name, int id, Date dateOfBirth, Traits traits) {
 		this(name,id,dateOfBirth,traits,new HashSet<Crime>());
 	}
 	
@@ -39,9 +39,15 @@ public class Criminal {
 		return traits;
 	}
 	
+	//Adders
+	public void addCrime(Crime c) {
+		crimes.add(c);
+	}
+	
+
 	// Override method toString()
 	public String toString() {
-		return name + "\nId: " + id + ", Date of Birth: " + dateOfBirth + ", " +traits.toString() + crimes.toString();
+		return "Criminal named "+name + " with id " + id + " born on " + dateOfBirth + " with the following traits:\n\t" +traits.toString() + "\n\tAnd crimes\n\t"+ crimes.toString();
 	}
 	
 	
