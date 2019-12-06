@@ -26,6 +26,38 @@ Global P12
 ###Livros
 http://opac.ua.pt/cgi-bin/koha/opac-detail.pl?biblionumber=238357
 
-##Dúvidas
+##Divisão do trabalho
 
-Como determinar o tamanho do array para o filtro de Bloom?
+###Isadora
+		Acrescentar características
+
+		MinHash
+
+		Programa de teste
+
+		Main (2ª funcionalidade)
+
+###Gonçalo
+
+		Gerar criminosos com crimes (máx 3) e características
+
+		BloomFilter
+
+		Programa de teste
+
+		Main (1ª funcionalidade e ajudar na 2ª)
+
+## Referências
+
+###Estatísticas PORDATA
+https://www.pordata.pt/Portugal/Esperan%c3%a7a+de+vida+%c3%a0+nascen%c3%a7a+total+e+por+sexo+(base+tri%c3%a9nio+a+partir+de+2001)-418
+
+		Esperança média de vida à nascença
+
+https://www.pordata.pt/Portugal/Popula%c3%a7%c3%a3o+residente+segundo+os+Censos+total+e+por+sexo-1
+
+		Distribuição por sexo
+
+https://pt.wikipedia.org/wiki/Estatura
+
+		Altura dos portugueses
