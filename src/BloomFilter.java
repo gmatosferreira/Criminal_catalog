@@ -2,16 +2,16 @@ public class BloomFilter {
 	
 	private int nElements=0; //Number of elements added
 	private int elementsInsert; //Max number of elements that will be inserted
-	private boolean[] bl; //Bloom filter (true for 1 and flase for 0)
+	private boolean[] bl; //Bloom filter (true for 1 and false for 0)
 	private int[] hashMultiplier;
 	private int[] hashIncrementer;
 	
 	
 	//Constructor
-	public BloomFilter(int elementsInsert, int arraySize) {
+	public BloomFilter(int elementsInsert, int nHash) {
 		this.elementsInsert=elementsInsert;
+		int arraySize = (int) Math.round((nHash*elementsInsert)/Math.log(2));
 		this.bl=new boolean[arraySize];
-		int nHash=(int) Math.round(arraySize*Math.log(2)/elementsInsert);
 		hashMultiplier=new int[nHash];
 		hashIncrementer=new int[nHash];
 		for(int i=0; i<nHash; i++) {
@@ -47,12 +47,20 @@ public class BloomFilter {
 	}
 	
 	//Getters
-	public int getHashNumber() {
+	public int getHashNumber() { //Returns number of hashes
 		return hashMultiplier.length;
 	}
 	
 	public int getArraySize() {
 		return bl.length;
+	}
+	
+	public int getElementsAdded() {
+		return nElements;
+	}
+	
+	public int getMaxNumElements() {
+		return elementsInsert;
 	}
 
 }
