@@ -109,7 +109,7 @@ public class Test {
 		}
 		System.out.printf("Generated %d criminals!\n", n);
 		
-		//Test bloom filters IN DEVELOPMENT
+		//Test bloom filters
 		boolean bloom=true;
 		System.out.println("\nIniciating test to Bloom Filters... (IN DEVELOPMENT)\nPress ENTER to continue...");
 		sc.nextLine();

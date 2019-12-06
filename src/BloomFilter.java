@@ -15,8 +15,8 @@ public class BloomFilter {
 		hashMultiplier=new int[nHash];
 		hashIncrementer=new int[nHash];
 		for(int i=0; i<nHash; i++) {
-			hashMultiplier[i]=(int) Math.round(Math.random()*27644437); //One of Bell primes
-			hashIncrementer[i]=(int) Math.round(Math.random()*16769023); //One of Carol primes
+			hashMultiplier[i]=(int) Math.round(Math.random()*27644436)+1; //Random between and and one of Bell primes
+			hashIncrementer[i]=(int) Math.round(Math.random()*16769022)+1; //Random between and and one of Carol primes
 		}
 	}
 	
