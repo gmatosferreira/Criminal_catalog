@@ -110,7 +110,44 @@ public class Test {
 		System.out.printf("Generated %d criminals!\n", n);
 		
 		//Test bloom filters IN DEVELOPMENT
-		System.out.println("\nIniciating test to Bloom Filters... (IN DEVELOPMENT)");
+		boolean bloom=true;
+		System.out.println("\nIniciating test to Bloom Filters... (IN DEVELOPMENT)\nPress ENTER to continue...");
+		sc.nextLine();
+		BloomFilter b1 = new BloomFilter(10,3);
+		System.out.printf("Created Bloom Filter to insert %d elements with %d hash functions, which has a length of %d.\n", 10,3,b1.getArraySize());
+		System.out.print("Adding the criminals at indices ");
+		for(int k=0;k<100;k+=10) {
+			b1.addElement(criminals.get(k));
+			System.out.printf(" %d ",k);
+		}
+		System.out.println("to the bloom filter...");
+		System.out.println("Criminals added, now checking if the elements 0,5,10,15,20,25,...,85,90,95 are present...\n");
+		for(int l=0;l<100;l+=5) {
+			if(l%10==0) {
+				if(!b1.isMember(criminals.get(l))) {
+					System.out.printf("\tERROR! Criminal at index %d with id %d was added but not identitied!\n",l,criminals.get(l).getId());
+					bloom=false;
+				}else {
+					System.out.printf("\t%d present, as expected\n",l);
+				}
+			}else {
+				if(b1.isMember(criminals.get(l))) {
+					System.out.printf("\tERROR! Criminal at index %d with id %d was iddentified and should not have been added!\n",l,criminals.get(l).getId());
+					bloom=false;
+				}else {
+					System.out.printf("\t%d not present, as expected\n",l);
+				}
+			}
+		}
+		
+		if(bloom)
+			System.out.println("All tests passed!");
+		else
+			System.out.println("Bloom filter has errors!");
+		
+		//minHash Testing
+		System.out.println("\nMoving on to minHash testing...\nPress ENTER to start...");
+		sc.nextLine();
 		
 		sc.close();
 	}
