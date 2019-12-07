@@ -149,6 +149,51 @@ public class Test {
 		System.out.println("\nMoving on to minHash testing...\nPress ENTER to start...");
 		sc.nextLine();
 		
+		//List of criminals
+		MinHash minHash = new MinHash(100, criminals);
+		
+		//List of suspects to be searched by Phisical Traits
+		Set<HashSet<String>> suspectsT = new HashSet<>();
+		Set<String> s = new HashSet<String>();
+		s.add("earlyAdult"); s.add("m"); s.add("lightBrown"); s.add("1.83"); suspectsT.add(new HashSet<String>(s));
+		s.clear(); s.add("middleAdult"); s.add("m"); s.add("creamWhite"); s.add("1.62"); suspectsT.add(new HashSet<String>(s));
+		s.clear(); s.add("lateAdult"); s.add("m"); s.add("darkBrown"); s.add("1.74"); suspectsT.add(new HashSet<String>(s));
+		s.clear(); s.add("elder"); s.add("m"); s.add("white"); s.add("1.8"); suspectsT.add(new HashSet<String>(s));
+		s.clear(); s.add("middleAdult"); s.add("f"); s.add("brown"); s.add("1.5"); suspectsT.add(new HashSet<String>(s));
+		
+		//List of suspects to be searched by Crimes
+		Set<HashSet<String>> suspectsC = new HashSet<>();
+		s.clear(); /*s.add("Money forgery");*/ s.add("Economic crime"); /*s.add("Vandalism"); s.add("Offence against property");*/
+		suspectsC.add(new HashSet<String>(s));
+		s.clear(); /*s.add("Fire");*/ s.add("Public crimes"); /*s.add("Arson");*/ s.add("Offence against property"); /*s.add("Calumny");*/ s.add("Offence against honor");
+		suspectsC.add(new HashSet<String>(s));
+
+		
+		//minHash search menu
+		System.out.println("\n---- Search suspectsT in Criminal Catalog ----");
+		System.out.println("1 - to start search by Crimes");
+		System.out.println("2 - to start search by Phisical Traits");
+		int option = sc.nextInt();
+		if(option==1){
+			System.out.println("\n-> Search by Crimes");
+			System.out.printf("\nNumber of suspects: %d", suspectsC.size());
+			for(HashSet suspect : suspectsC) {
+				System.out.printf("\nSUSPECT: %s\n", suspect.toString());
+				minHash.getSimilar(0.8, suspect, true);
+				
+			}
+		}
+		
+		if(option==2){
+			System.out.println("\n-> Search by Phisical Traits");
+			System.out.printf("\nNumber of suspects: %d", suspectsT.size());
+			for(HashSet suspect : suspectsT) {
+				System.out.printf("\nSUSPECT: %s\n", suspect.toString());
+				minHash.getSimilar(0.1, suspect, true);
+				
+			}
+		}
+		System.out.println("\n...End of tests.");
 		sc.close();
 	}
 
