@@ -1,0 +1,6 @@
+earlyAdult,middleAdult,lateAdult,elder
+white,creamWhite,lightBrown,brown,darkBrown
+short,tall,average
+f,m
+Offence against the person,Murder,Assault,Poisoning,Body injuring,Offence against property,Arson,Theft,Vandalism,Offence against honor,Cheating,Calumny,Libel,Slander,Public order offence,Peculate,Misusage of IT systems,Misdirect of mail,Sexual offence,Rape,Sexual assault,Public crimes,Fire,Explosion,Rockfall,Offence against heritage,Antiquity theft,Antiquity smuggling,Demolition of heritage,Damage of public heritage,Offence against justice,False testemony,Padding,Economic crime,Money laundering,Fraude,Money forgery
+	

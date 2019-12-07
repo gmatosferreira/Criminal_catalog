@@ -7,7 +7,7 @@ public class MinHash {
 
 	private int numHash;
 	private List<Criminal> criminals;
-	private int[][] minHashTraits, minHashCrimes;
+	private int[][] minHashTraits;
 	private List<Criminal> similar;
 	
 
@@ -15,7 +15,7 @@ public class MinHash {
 		this.numHash = numHash;
 		this.criminals = criminals;
 		minHashTraits = new int[criminals.size()][numHash];
-		minHashCrimes = new int[criminals.size()][numHash];
+
         makeMinHash(criminals);
     }
 	
@@ -26,13 +26,6 @@ public class MinHash {
 				for(int k = 0; k < numHash; k++) {
 					int hk = hashCode(criminals.get(i).getShingleTraits());
 					minHashTraits[i][k] = hk;
-				}
-			}
-			
-			for (int j = 0; j < criminals.get(i).getShingleCrimes().size(); j++) {
-				for(int k = 0; k < numHash; k++) {
-					int hk = hashCode(criminals.get(i).getShingleCrimes());
-					minHashCrimes[i][k] = hk;
 				}
 			}
 		}
@@ -63,7 +56,7 @@ public class MinHash {
 		return (int)min;
 	}
 	
-	public List<Criminal> getSimilar(double dist, Set<String> setother, boolean opt) {
+	public List<Criminal> getSimilar(double dist, Set<String> setother) {
 		List<Criminal> match = new ArrayList<>();
 		
 		int[] other = new int[numHash];
@@ -71,25 +64,15 @@ public class MinHash {
 			int hk = hashCode(setother);
 			other[k] = hk;
 		}
-		
-		if (opt) {
-			for (int i = 0; i < minHashTraits.length; i++) {
-				double dist2 = getDistance(minHashTraits[i], other);
-				if ( dist2 <= dist) {
-					match.add(criminals.get(i));
-					//System.out.println("Similar " + criminals.get(i).toString());
-				}
+
+		for (int i = 0; i < minHashTraits.length; i++) {
+			double dist2 = getDistance(minHashTraits[i], other);
+			if ( dist2 <= dist) {
+				match.add(criminals.get(i));
+				//System.out.println("Similar " + criminals.get(i).toString());
 			}
 		}
-		else {
-			for (int i = 0; i < minHashCrimes.length; i++) {
-				double dist2 = getDistance(minHashCrimes[i], other);
-				if ( dist2 <= dist) {
-					match.add(criminals.get(i));
-					//System.out.println("Similar " + criminals.get(i).toString());
-				}
-			}
-		}
+
 		return match;
 	}
 	

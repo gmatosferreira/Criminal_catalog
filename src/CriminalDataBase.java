@@ -182,6 +182,101 @@ public static void main(String[] arg){
 			}
 		}while(menu);
 		
+		
+		//minHash Testing
+		System.out.println("\n\nMoving on to MinHash testing...");
+		System.out.println("Press ENTER to start...");
+		sc.nextLine();
+		
+		System.out.printf("\nGenerating MinHash signature matrices for the %d criminals...\n", n);
+		MinHash minHash = new MinHash(100, criminals); //List of criminals
+		System.out.println("Signature matrices created with success!");		
+		
+		//Generate n random suspects
+		System.out.print("\nHow many suspects do you want to create? ");
+		n=sc.nextInt();		
+		
+		System.out.println("\nGenerating list of suspects...\n");
+
+		int cont=1;
+		String[] age=null, sk=null, hgt=null, sx=null, cr=null;
+		try(Scanner input = new Scanner(new FileReader("src/Data/suspects.txt"))) {
+			//System.out.println("Accessing src/Data/suspects.txt to compile a list of traits for suspects...");
+			while (input.hasNext()) {
+				if(cont==1) age=input.nextLine().split(",");
+				if(cont==2) sk=input.nextLine().split(",");
+				if(cont==3) hgt=input.nextLine().split(",");
+				if(cont==4) sx=input.nextLine().split(",");
+				if(cont==5) cr=input.nextLine().split(",");
+				cont+=1;
+			}
+		}catch(IOException e) {
+			System.err.printf("ERRO: %s\n", e.getMessage());
+		}
+		
+		
+		Set<HashSet<String>> suspects = new HashSet<>();
+		Set<String> s = new HashSet<String>();
+		Random r=new Random();
+		int rNumber;
+		for(int i=0;i<n;i++) {
+			rNumber=r.nextInt(age.length); s.add(age[rNumber]); //get age
+			rNumber=r.nextInt(sk.length); s.add(sk[rNumber]); //get skin color
+			rNumber=r.nextInt(hgt.length); s.add(hgt[rNumber]); //get height
+			rNumber=r.nextInt(sx.length); s.add(sx[rNumber]); //get sex
+			rNumber=r.nextInt(cr.length); s.add(cr[rNumber]); //get crime
+			
+			suspects.add(new HashSet<String>(s));
+			s.clear();
+		}
+				
+		//minHash search menu
+		menu=true;
+				
+		List<Criminal> match = null;
+		do {
+			System.out.println("\n");
+			System.out.println("----------------MENU----------------");
+			System.out.println("1 - See matches for Suspects");
+			System.out.println("0 - EXIT");
+			System.out.println("------------------------------------");
+			System.out.print("Option: ");
+			op=sc.nextInt();
+			switch(op) {
+			case(1):
+				System.out.println("\nSearch suspects's matches...");
+				for(HashSet suspect : suspects) {
+					System.out.printf("\n\nSUSPECT: %s\n", suspect.toString());
+					match = minHash.getSimilar(0.5, suspect);
+					System.out.printf("%d criminals match this suspect!\n", match.size());
+					if(match.size()>0) {
+						System.out.println("------------------------------------");
+						System.out.println("See list of criminals matching this suspect?");
+						System.out.println("1 - If yes");
+						System.out.println("------------------------------------");
+						System.out.print("Option: ");
+						n=sc.nextInt();
+						if(n==1) {
+							for(Criminal m : match) {
+								System.out.println(m);
+							}
+						} else {
+							continue;
+						}
+					}
+				}
+				break;
+			default:
+				System.out.printf("\n\nExiting the program...\n");
+				menu=false;
+				break;
+			}
+		}while(menu);
+		
+
+		System.out.println("\n...End of tests.");
+		
+		
 		sc.close();
 	}
 
@@ -191,5 +286,8 @@ public static void main(String[] arg){
 		else
 			System.out.println(search.toString()+" is NOT in the database!");
 	}
+	
+	
+	
 
 }

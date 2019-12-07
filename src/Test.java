@@ -182,7 +182,7 @@ public class Test {
 			System.out.printf("Number of suspects: %d", suspectsC.size());
 			for(HashSet suspect : suspectsC) {
 				System.out.printf("\nSUSPECT: %s\n", suspect.toString());
-				match = minHash.getSimilar(0.5, suspect, true);
+				match = minHash.getSimilar(0.2, suspect);
 				System.out.printf("%d criminals match this suspect!\n", match.size());
 			}
 		}
@@ -192,7 +192,7 @@ public class Test {
 			System.out.printf("\nNumber of suspects: %d", suspectsT.size());
 			for(HashSet suspect : suspectsT) {
 				System.out.printf("\nSUSPECT: %s\n", suspect.toString());
-				match = minHash.getSimilar(0.5, suspect, true);
+				match = minHash.getSimilar(0.1, suspect);
 				System.out.printf("%d criminals match this suspect!\n", match.size());
 				
 			}

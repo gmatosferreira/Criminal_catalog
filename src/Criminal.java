@@ -82,19 +82,11 @@ public class Criminal {
 		set.add(String.valueOf(traits.getSex()));
 		set.add(traits.getSkinColor());
 		set.add(height);
-		set.add(traits.getNationality());
-		
-		return set;
-	}
-	
-	public Set<String> getShingleCrimes() {
-		Set<String> set = new HashSet<String>();
 
 		for (Crime c : crimes) {
-			set.add(c.getCategory());
-			//set.add(c.getName());
+			set.add(c.getName());
 		}
-
+		
 		return set;
 	}
 	
