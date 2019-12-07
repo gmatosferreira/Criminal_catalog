@@ -64,11 +64,24 @@ public class Criminal {
 		if (year>12775 && year<=18250) age = "middleAdult"; //entre 35 e 50 anos
 		if (year>18250 && year<=23725) age = "lateAdult"; //entre 50 e 65 anos
 		if (year>23725) age = "elder"; //acima de 65 anos
+		
+		// enquadra altura em uma faixa
+		double h=traits.getHeight();
+		String height="";
+		if(traits.getSex()=='f'){
+			if(h<1.54) height="short";
+			if(h>=1.54 && h<=1.74) height="average";
+			if(h>1.74) height="tall";
+		}else {
+			if(h<1.65) height="short";
+			if(h>=1.65 && h<=1.85) height="average";
+			if(h>1.85) height="tall";			
+		}
 
 		set.add(age);
 		set.add(String.valueOf(traits.getSex()));
 		set.add(traits.getSkinColor());
-		set.add(traits.getHeight().toString());
+		set.add(height);
 		set.add(traits.getNationality());
 		
 		return set;

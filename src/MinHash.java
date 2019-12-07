@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
@@ -7,6 +8,7 @@ public class MinHash {
 	private int numHash;
 	private List<Criminal> criminals;
 	private int[][] minHashTraits, minHashCrimes;
+	private List<Criminal> similar;
 	
 
 	public MinHash(int numHash, List<Criminal> criminals){
@@ -61,7 +63,8 @@ public class MinHash {
 		return (int)min;
 	}
 	
-	public void getSimilar(double dist, Set<String> setother, boolean opt) {
+	public List<Criminal> getSimilar(double dist, Set<String> setother, boolean opt) {
+		List<Criminal> match = new ArrayList<>();
 		
 		int[] other = new int[numHash];
 		for(int k = 0; k < numHash; k++) {
@@ -73,7 +76,8 @@ public class MinHash {
 			for (int i = 0; i < minHashTraits.length; i++) {
 				double dist2 = getDistance(minHashTraits[i], other);
 				if ( dist2 <= dist) {
-					System.out.println("Similar " + criminals.get(i).toString());
+					match.add(criminals.get(i));
+					//System.out.println("Similar " + criminals.get(i).toString());
 				}
 			}
 		}
@@ -81,10 +85,12 @@ public class MinHash {
 			for (int i = 0; i < minHashCrimes.length; i++) {
 				double dist2 = getDistance(minHashCrimes[i], other);
 				if ( dist2 <= dist) {
-					System.out.println("Similar " + criminals.get(i).toString());
+					match.add(criminals.get(i));
+					//System.out.println("Similar " + criminals.get(i).toString());
 				}
 			}
 		}
+		return match;
 	}
 	
 	public double getDistance(int[] a, int[] b) {

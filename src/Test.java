@@ -155,11 +155,11 @@ public class Test {
 		//List of suspects to be searched by Phisical Traits
 		Set<HashSet<String>> suspectsT = new HashSet<>();
 		Set<String> s = new HashSet<String>();
-		s.add("earlyAdult"); s.add("m"); s.add("lightBrown"); s.add("1.83"); suspectsT.add(new HashSet<String>(s));
-		s.clear(); s.add("middleAdult"); s.add("m"); s.add("creamWhite"); s.add("1.62"); suspectsT.add(new HashSet<String>(s));
-		s.clear(); s.add("lateAdult"); s.add("m"); s.add("darkBrown"); s.add("1.74"); suspectsT.add(new HashSet<String>(s));
-		s.clear(); s.add("elder"); s.add("m"); s.add("white"); s.add("1.8"); suspectsT.add(new HashSet<String>(s));
-		s.clear(); s.add("middleAdult"); s.add("f"); s.add("brown"); s.add("1.5"); suspectsT.add(new HashSet<String>(s));
+		s.add("earlyAdult"); s.add("m"); s.add("creamWhite"); s.add("average"); suspectsT.add(new HashSet<String>(s));
+		s.clear(); s.add("middleAdult"); s.add("m"); s.add("brown"); s.add("tall"); suspectsT.add(new HashSet<String>(s));
+		s.clear(); s.add("lateAdult"); s.add("m"); s.add("darkBrown"); s.add("short"); suspectsT.add(new HashSet<String>(s));
+		s.clear(); s.add("elder"); s.add("m"); s.add("white"); s.add("average"); suspectsT.add(new HashSet<String>(s));
+		s.clear(); s.add("middleAdult"); s.add("f"); s.add("brown"); s.add("tall"); suspectsT.add(new HashSet<String>(s));
 		
 		//List of suspects to be searched by Crimes
 		Set<HashSet<String>> suspectsC = new HashSet<>();
@@ -171,16 +171,19 @@ public class Test {
 		
 		//minHash search menu
 		System.out.println("\n---- Search suspectsT in Criminal Catalog ----");
-		System.out.println("1 - to start search by Crimes");
-		System.out.println("2 - to start search by Phisical Traits");
+		System.out.println("1 - to start search by Similar Crimes");
+		System.out.println("2 - to start search by Similar Phisical Traits");
+		System.out.println("ENTER - exit tests");
 		int option = sc.nextInt();
+		
+		List<Criminal> match = null;
 		if(option==1){
-			System.out.println("\n-> Search by Crimes");
-			System.out.printf("\nNumber of suspects: %d", suspectsC.size());
+			System.out.println("\n-> Search by Similar Crimes");
+			System.out.printf("Number of suspects: %d", suspectsC.size());
 			for(HashSet suspect : suspectsC) {
 				System.out.printf("\nSUSPECT: %s\n", suspect.toString());
-				minHash.getSimilar(0.8, suspect, true);
-				
+				match = minHash.getSimilar(0.5, suspect, true);
+				System.out.printf("%d criminals match this suspect!\n", match.size());
 			}
 		}
 		
@@ -189,7 +192,8 @@ public class Test {
 			System.out.printf("\nNumber of suspects: %d", suspectsT.size());
 			for(HashSet suspect : suspectsT) {
 				System.out.printf("\nSUSPECT: %s\n", suspect.toString());
-				minHash.getSimilar(0.1, suspect, true);
+				match = minHash.getSimilar(0.5, suspect, true);
+				System.out.printf("%d criminals match this suspect!\n", match.size());
 				
 			}
 		}
