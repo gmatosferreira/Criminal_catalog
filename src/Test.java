@@ -111,7 +111,7 @@ public class Test {
 		
 		//Test bloom filters
 		boolean bloom=true;
-		System.out.println("\nIniciating test to Bloom Filters... (IN DEVELOPMENT)\nPress ENTER to continue...");
+		System.out.println("\nIniciating test to Bloom Filters...\nPress ENTER to continue...");
 		sc.nextLine();
 		BloomFilter b1 = new BloomFilter(10,3);
 		System.out.printf("Created Bloom Filter to insert %d elements with %d hash functions, which has a length of %d.\n", 10,3,b1.getArraySize());
